@@ -403,3 +403,10 @@ helm delete vault --namespace vault
 minikube stop
 minikube delete
 ```
+
+## References
+
+- https://learn.hashicorp.com/tutorials/vault/agent-kubernetes
+- https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar
+- https://learn.hashicorp.com/tutorials/vault/kubernetes-external-vault
+- https://github.com/hashicorp/vault-helm
