@@ -1,4 +1,6 @@
-# Vault Agent Kubernetes Tutorial
+# Vault Agent vs Kubernetes Tutorial
+
+![vault-vs-k8s](images/vault-k8s.png)
 
 ## Introduction
 
@@ -19,6 +21,8 @@ In this tutorial, I would like to summarize the steps will helps you installing 
   - Secondly, you need to assign a service account which is matching with the service account that was registered inside of the role of the authentication method.
   - Finally, assign the service account name just created to the deployment or pod that you want to get the vault's secrets information.
 
+![vault-agent-architecture](images/vault-agent.png)
+
 ## Prerequisites
 
 This tutorial will require:
@@ -32,6 +36,11 @@ This tutorial will require:
 ## TL;DR
 
 ### Installing at Local
+
+#### Minikube
+
+- Ref: https://kubernetes.io/docs/tasks/tools/install-minikube/
+- Quickstart with MacOS by `brew install minikube && brew link minikube`
 
 #### Vault
 
