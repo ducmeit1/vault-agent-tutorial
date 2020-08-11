@@ -2,11 +2,11 @@
 
 ## Introduction
 
-- [Vault](https://www.vaultproject.io) is a tool for securely accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, or certificates. Vault provides a unified interface to any secret, while providing tight access control and recording a detailed audit log.
+- [Vault](https://www.vaultproject.io) is a tool for securely accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, or certificates. Vault provides a unified interface to any secret while providing tight access control and recording a detailed audit log.
 
 - [Kubernetes](https://kubernetes.io) is an open-source system for automating deployment, scaling, and management of containerized applications.
 
-- Kubernetes won't help you store sensitive data even you think the [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) API that Kubernetes provided is a way to store your data. No, it just helps you encode your data with Base64 without any encryption. Therefore, you could uses Vault to improve this problem.
+- Kubernetes won't help you store sensitive data even you think the [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) API that Kubernetes provided is a way to store your data. No, it just helps you encode your data with Base64 without any encryption. Therefore, you could use the Vault to improve this problem.
 
 - Vault supports many authentication methods to authorize for the client to get the sensitive data, Kubernetes was supported as well by uses Service Account's Kubernetes. To help you easily connect to Vault Cluster and helps you manage the policy about getting the secrets for your Kubernetes deployment or pod, we would like to uses [Vault Agent](https://www.vaultproject.io/docs/agent) with injection sidecar method. You can read more at [here](https://www.vaultproject.io/docs/platform/k8s/injector).
 
@@ -17,11 +17,11 @@ In this tutorial, I would like to summarize the steps will helps you installing 
 - How your Kubernetes Cluster do authentication with your external Vault Cluster and getting the secrets information?
   - Firstly, you need to create a service account is **vault-auth** and use its secrets information to do authentication with Vault by SA's JWT Token and SA's CA Certification and Kubernetes cluster master's IP Address.
   - Secondly, you need to assign a service account which is matching with the service account that was registered inside of the role of the authentication method.
-  - Finally, assign the service account name just created to the deployment or pod that you want to get vault's secrets information.
+  - Finally, assign the service account name just created to the deployment or pod that you want to get the vault's secrets information.
 
 ## Prerequisites
 
-This tutorial will requires:
+This tutorial will require:
 
 - Installed Docker
 - Installed Vault Server
@@ -35,7 +35,7 @@ This tutorial will requires:
 
 #### Vault
 
-- [Installing document](https://learn.hashicorp.com/tutorials/vault/getting-started-install) (Quick start with MacOS by run Homebrew with: `brew install vault`)
+- [Installing document](https://learn.hashicorp.com/tutorials/vault/getting-started-install) (Quickstart with MacOS by run Homebrew with: `brew install vault`)
 
 - Verifying the installing with: `vault` at the Terminal.
 
@@ -62,14 +62,13 @@ This tutorial will requires:
               Version Sha: 340cc2fa263f6cbd2861b41518da8a62c153e2e7+CHANGES
 
   WARNING! dev mode is enabled! In this mode, Vault runs entirely in-memory
-  and starts unsealed with a single unseal key. The root token is already
-  authenticated to the CLI, so you can immediately begin using Vault.
+  and starts unsealed with a single unseal key. The root token is already authenticated to the CLI, so you can immediately begin using Vault.
 
   You may need to set the following environment variable:
 
       $ export VAULT_ADDR='http://127.0.0.1:8200'
 
-  The unseal key and root token are displayed below in case you want to
+  The unseal key and root token is displayed below in case you want to
   seal/unseal the Vault or re-authenticate.
 
   Unseal Key: NNWdeyT8zpNpV6w5nj+ePF8fsdjQ9ZYRYKG4DYhI+Ds=
@@ -106,7 +105,7 @@ This tutorial will requires:
   Verifying by:
 
   ```shell
-  vault kv get internal/database/config username
+  vault kv get internal/database/config
   ```
 
   For example:
@@ -370,10 +369,10 @@ This tutorial will requires:
 - Patch annotations to inject Vault's secrets to this deployment
 
   ```shell
-  kubectl patch deployment orgchart --patch "$(cat k8s/example/example-path.yaml)" --namespace demo
+  kubectl patch deployment orgchart --patch "$(cat k8s/example/example-patch.yaml)" --namespace demo
   ```
 
-- Verifying the secret was injected to primary container
+- Verifying the secret was injected to the primary container
   
   ```shell
   kubectl exec -it orgchart-69656bcf6-599jx -n demo -- cat /vault/secrets/config.txt
