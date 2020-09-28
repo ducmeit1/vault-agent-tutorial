@@ -268,11 +268,11 @@ This tutorial will require:
 - Create a new role `app` for authentication method `minikube`:
   
   ```shell
-    vault write auth/minikube/role/app \
-    bound_service_account_names=app \
-    bound_service_account_namespaces=demo \
-    policies=app \
-    ttl=60s
+  vault write auth/minikube/role/app \
+  bound_service_account_names=app \
+  bound_service_account_namespaces=demo \
+  policies=app \
+  ttl=60s
   ```
 
   - This role will allow any Kubernetes pod assigned with the service account `app` which is created at `demo` namespace access to the secrets that defined at `app` policy. The access token will be renewed every 60 seconds.
@@ -318,7 +318,7 @@ This tutorial will require:
 - Set kubectl namespace at `vault` with:
 
   ```shell
-  kubectl config set-context --curent --namespace=vault
+  kubectl config set-context --current --namespace=vault
   ```
 
 - Add Helm repository
