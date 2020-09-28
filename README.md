@@ -267,7 +267,8 @@ This tutorial will require:
 
 - Create a new role `app` for authentication method `minikube`:
   
-  ```vault write auth/minikube/role/app \
+  ```shell
+    vault write auth/minikube/role/app \
     bound_service_account_names=app \
     bound_service_account_namespaces=demo \
     policies=app \
