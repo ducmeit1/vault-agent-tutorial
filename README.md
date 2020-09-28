@@ -406,7 +406,7 @@ You can do as the same steps that installing with Minikube on above, however, th
 
 ```shell
 kubectl delete -f k8s/example/example.yaml
-kubectl delte -f k8s/vault-agent/vault-auth-sa.yaml
+kubectl delete -f k8s/vault-agent/vault-auth-sa.yaml
 helm delete vault --namespace vault
 minikube stop
 minikube delete
